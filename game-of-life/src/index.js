@@ -8,8 +8,7 @@ class Box extends React.Component {
   }
   render() {
     return(
-      <div className={this.props.boxClass} id={this.props.id} onClick={this.selectBox}>
-      </div>
+      <div className={this.props.boxClass} id={this.props.id} onClick={this.selectBox} />
     );
   }
 }
@@ -32,7 +31,7 @@ class Grid extends React.Component {
             boxId={boxId}
             row={i}
             col={j}
-            selectBox={this.selectBox}
+            selectBox={this.props.selectBox}
           />
         );
       }
@@ -42,7 +41,7 @@ class Grid extends React.Component {
       <div className="grid" style={{width: width}}>
         {rowsArr}
       </div>
-    )
+    );
   }
 }
 
@@ -60,6 +59,14 @@ class Main extends React.Component {
     }
   }
 
+  selectBox = (row, col) => {
+    let gridCopy = arrayClone(this.state.gridFull);
+    gridCopy[row][col] = !gridCopy[row][col];
+    this.setState({
+      gridFull: gridCopy
+    });
+  }
+
   render() {
     return(
       <div>
@@ -68,11 +75,16 @@ class Main extends React.Component {
           gridFull = {this.state.gridFull}
           rows={this.rows}
           columns={this.columns}
+          selectBox={this.selectBox}
         />
         <h2>Generations: {this.state.generation}</h2>
       </div>
     )
   }
+}
+
+function arrayClone(arr) {
+  return JSON.parse(JSON.stringify(arr));
 }
 
 ReactDOM.render(<Main />, document.getElementById('root'));
