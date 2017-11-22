@@ -51,7 +51,7 @@ class Main extends React.Component {
     super();
     this.speed = 100;
     this.rows = 30;
-    this.columns = 60;
+    this.columns = 50;
 
     this.state = {
       generation: 0,
@@ -65,6 +65,24 @@ class Main extends React.Component {
     this.setState({
       gridFull: gridCopy
     });
+  }
+
+  seed = () => {
+    let gridCopy = arrayClone(this.state.gridFull);
+    for (let i=0; i<this.rows; i++) {
+      for (let j=0; j<this.columns; j++) {
+        if (Math.floor(Math.random() * 4) === 1) {
+          gridCopy[i][j] = true;
+        }
+      }
+    }
+    this.setState({
+      gridFull: gridCopy
+    });
+  }
+
+  componentDidMount() {
+    this.seed();
   }
 
   render() {

@@ -1,6 +1,6 @@
 body {
-  background-image: url(IMG_2991.jpg);
-  background-repeat: no-repeat;
+  /*background-image: url(IMG_2991.jpg);
+  background-repeat: no-repeat;*/
   /*background-position: center;*/
   background-size: cover;
   color: black;
@@ -20,11 +20,11 @@ body {
 }
 
 .on {
-  background-color: grey;
+  background-color: black;
 }
 
 .box:hover {
-  background: black;
+  background: grey;
 }
 
 .center {
